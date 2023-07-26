@@ -10,7 +10,8 @@ export class TodosService {
   constructor(@InjectModel(Todo.name) private todoModel: Model<Todo>) {}
 
   create(createTodoDto: CreateTodoDto) {
-    return 'This action adds a new todo';
+    console.log('This action adds a new todo');
+    return new this.todoModel(createTodoDto).save();
   }
 
   findAll() {
