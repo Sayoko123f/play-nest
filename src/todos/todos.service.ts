@@ -26,7 +26,7 @@ export class TodosService {
 
   update(id: string, updateTodoDto: UpdateTodoDto) {
     console.log`This action updates a #${id} todo`;
-    return this.todoModel.findByIdAndUpdate(id, { $set: updateTodoDto });
+    return this.todoModel.findByIdAndUpdate(id, { $set: updateTodoDto }, { new: true });
   }
 
   remove(id: string) {
