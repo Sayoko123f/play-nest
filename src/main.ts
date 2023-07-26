@@ -1,9 +1,20 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import type { INestApplication } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
+bootstrap();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
+  setupSwagger(app);
   await app.listen(3000);
 }
-bootstrap();
+
+function setupSwagger(app: INestApplication) {
+  const builder = new DocumentBuilder();
+  const config = builder.setTitle('API').setDescription('練習 NestJS').setVersion('1.0').build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('swagger', app, document);
+}
