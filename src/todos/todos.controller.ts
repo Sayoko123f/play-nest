@@ -35,4 +35,9 @@ export class TodosController {
   remove(@Param('id') id: string) {
     return this.todosService.remove(id);
   }
+
+  @Delete()
+  clear() {
+    return this.todosService.clear();
+  }
 }

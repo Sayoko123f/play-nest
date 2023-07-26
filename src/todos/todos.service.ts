@@ -33,4 +33,9 @@ export class TodosService {
     console.log`This action removes a #${id} todo`;
     return this.todoModel.findByIdAndDelete(id);
   }
+
+  clear() {
+    console.log('Clear All Todo!!', new Date().toLocaleTimeString());
+    return this.todoModel.deleteMany();
+  }
 }

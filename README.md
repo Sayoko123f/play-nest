@@ -58,16 +58,26 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## 待開發功能
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### 搜尋
 
-## Stay in touch
+GET 要支持查詢參數
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- title
+- created
+- updated
+- tag
 
-## License
+### 日期
 
-Nest is [MIT licensed](LICENSE).
+要紀錄建立日期
+要記錄最後更新日期
+
+GET API要能依照上述兩種日期排序
+
+### TAG
+
+TODO 要能新增標籤
+要能依照標籤 find
+
