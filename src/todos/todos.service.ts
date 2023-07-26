@@ -19,15 +19,18 @@ export class TodosService {
     return this.todoModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} todo`;
+  findOne(id: string) {
+    console.log`This action returns a #${id} todo`;
+    return this.todoModel.findById(id);
   }
 
-  update(id: number, updateTodoDto: UpdateTodoDto) {
-    return `This action updates a #${id} todo`;
+  update(id: string, updateTodoDto: UpdateTodoDto) {
+    console.log`This action updates a #${id} todo`;
+    return this.todoModel.findByIdAndUpdate(id, { $set: updateTodoDto });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} todo`;
+  remove(id: string) {
+    console.log`This action removes a #${id} todo`;
+    return this.todoModel.findByIdAndDelete(id);
   }
 }
