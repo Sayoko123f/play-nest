@@ -1,5 +1,5 @@
 import { ApiPropertyOptional, PickType } from '@nestjs/swagger';
-import { MaxLength, IsDate, IsOptional, IsIn } from 'class-validator';
+import { MaxLength, Min, Max, IsDate, IsOptional, IsIn } from 'class-validator';
 import { Type } from 'class-transformer';
 import { CreateTodoDto } from './create-todo.dto';
 import type { SortValues } from 'mongoose';
@@ -42,4 +42,17 @@ export class FindTodoDto extends PickType(CreateTodoDto, ['title'] as const) {
   @IsIn(['asc', 'desc'])
   @IsOptional()
   orderBy: SortValues;
+
+  @ApiPropertyOptional()
+  @Min(0)
+  @Type(() => Number)
+  @IsOptional()
+  skip: number;
+
+  @ApiPropertyOptional()
+  @Min(0)
+  @Max(100)
+  @Type(() => Number)
+  @IsOptional()
+  limit: number;
 }

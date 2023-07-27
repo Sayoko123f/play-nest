@@ -20,7 +20,9 @@ export class TodosService {
     console.log`This action returns all todos`;
 
     const filter: FilterQuery<Todo> = {};
-    const sortObject: Record<string, SortOrder> = { createdAt: params.orderBy ?? 'asc' };
+    const sort: Record<string, SortOrder> = {};
+    const skip = params.skip ?? 0;
+    const limit = params.limit ?? 0;
 
     params.title && (filter.title = fq.regex(params.title));
     if (params.createStart || params.createEnd) {
@@ -30,10 +32,17 @@ export class TodosService {
       filter.upeatedAt = fq.betweenDate({ start: params.updateStart, end: params.updateEnd });
     }
     if (params.sortBy) {
-      sortObject[params.sortBy] = params.orderBy ?? 'asc';
+      sort[params.sortBy] = params.orderBy ?? 'asc';
     }
+    sort.createdAt = params.orderBy ?? 'asc';
 
-    return this.todoModel.find(filter).sort(sortObject).exec();
+    return this.todoModel
+      .find(filter, null, {
+        sort,
+        skip,
+        limit,
+      })
+      .exec();
   }
 
   findOne(id: string) {
