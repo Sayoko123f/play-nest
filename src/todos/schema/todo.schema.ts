@@ -10,6 +10,9 @@ export class Todo {
 
   @Prop()
   content: string;
+
+  @Prop({ default: false })
+  deleted: boolean;
 }
 
 export const TodoSchema = SchemaFactory.createForClass(Todo);

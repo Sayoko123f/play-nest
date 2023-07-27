@@ -19,7 +19,7 @@ export class TodosService {
   findAll(params: FindTodoDto) {
     console.log`This action returns all todos`;
 
-    const filter: FilterQuery<Todo> = {};
+    const filter: FilterQuery<Todo> = { deleted: { $eq: false } };
     const sort: Record<string, SortOrder> = {};
     const skip = params.skip ?? 0;
     const limit = params.limit ?? 0;
@@ -57,7 +57,7 @@ export class TodosService {
 
   remove(id: string) {
     console.log`This action removes a #${id} todo`;
-    return this.todoModel.findByIdAndDelete(id);
+    return this.todoModel.findByIdAndUpdate(id, { $set: { deleted: true } });
   }
 
   clear() {
