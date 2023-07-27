@@ -10,4 +10,7 @@ export const fq = {
     end && (ret.$lt = end);
     return ret;
   },
+  in(arr: unknown[]) {
+    return { $in: arr };
+  },
 };

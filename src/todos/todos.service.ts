@@ -23,8 +23,9 @@ export class TodosService {
     const sort: Record<string, SortOrder> = {};
     const skip = params.skip ?? 0;
     const limit = params.limit ?? 0;
-
     params.title && (filter.title = fq.regex(params.title));
+    params.state && (filter.state = fq.in(params.state));
+
     if (params.createStart || params.createEnd) {
       filter.createdAt = fq.betweenDate({ start: params.createStart, end: params.createEnd });
     }
