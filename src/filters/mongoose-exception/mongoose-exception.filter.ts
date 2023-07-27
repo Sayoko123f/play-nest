@@ -10,6 +10,7 @@ export class MongooseExceptionFilter implements ExceptionFilter {
     // const request = ctx.getRequest<Request>();
 
     if (exception instanceof Error.CastError) {
+      console.log(exception);
       response.status(404).json('404 Not Found');
       return;
     }
